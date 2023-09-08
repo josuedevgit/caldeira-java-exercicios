@@ -5,6 +5,7 @@ public class ImprimeNome {
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite teu nome:");
         String nome = sc.nextLine();
+        sc.close();
 
         System.out.println("Olá, " + nome);
     }

@@ -9,6 +9,7 @@ public class RecebeEImprimeNumeros {
         int num1 = sc.nextInt();
         System.out.println("Digite o segundo:");
         int num2 = sc.nextInt();
+        sc.close();
 
         System.out.println("Você digitou: " + num1 + " e " + num2);
     }
