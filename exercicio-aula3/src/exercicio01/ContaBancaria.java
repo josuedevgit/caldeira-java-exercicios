@@ -14,10 +14,62 @@ public class ContaBancaria {
 
     public ContaBancaria(String nome, String cpf, String identificadorConta, String banco) {
         this.nome = nome;
-        this.cpf = cpf;
+        if(validaCpf(cpf)) {
+            this.cpf = cpf;
+        } else {
+            fecharConta();
+            throw new IllegalStateException("CPF Inválido! Tente novamente");
+        }
         this.identificadorConta = identificadorConta;
         this.banco = banco;
         this.contaAberta = true;
+    }
+
+    public boolean validaCpf(String cpf) {
+        int soma, multiplicacao, resto, dv1, dv2;
+        if(cpf.length() != 11 || cpf.equals("00000000000")){
+            return false;
+        }
+
+        soma = 0;
+        multiplicacao = 10;
+        int[] cpfVetor = new int[11];
+
+        for(int i = 0; i < 11; i++) {
+            cpfVetor[i] = Integer.parseInt(String.valueOf(cpf.charAt(i)));
+        }
+
+        for(int i = 0; i < 9; i++) {
+            soma += cpfVetor[i] * multiplicacao;
+            multiplicacao -= 1;
+        }
+
+        resto = soma % 11;
+        if(resto < 2) {
+            dv1 = 0;
+        } else {
+            dv1 = 11 - resto;
+        }
+
+        // second number
+        soma = 0;
+        multiplicacao = 11;
+        for(int i = 0; i < 10; i++) {
+            soma += cpfVetor[i] * multiplicacao;
+            multiplicacao -= 1;
+        }
+        resto = soma % 11;
+        if(resto < 2) {
+            dv2 = 0;
+        } else {
+            dv2 = 11 - resto;
+        }
+
+        if(cpfVetor[9] == dv1 && cpfVetor[10] == dv2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
