@@ -18,8 +18,8 @@ public class ContarVogaisDePalavra {
 
         for(int i = 0; i < palavraOuFrase.length(); i++) {
             char caractere = palavraOuFrase.charAt(i);
-
-            if(Character.toString(caractere).equals("a") || Character.toString(caractere).equals("e") || Character.toString(caractere).equals("i") || Character.toString(caractere).equals("o") || Character.toString(caractere).equals("u")) {
+            String caractereParaCadeia = Character.toString(caractere);
+            if(caractereParaCadeia.equals("a") || caractereParaCadeia.equals("e") || caractereParaCadeia.equals("i") || caractereParaCadeia.equals("o") || caractereParaCadeia.equals("u")) {
                 contador++;
             }
         }
