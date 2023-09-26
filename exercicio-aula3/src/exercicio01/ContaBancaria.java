@@ -1,6 +1,8 @@
 package exercicio01;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContaBancaria {
     private String nome;
@@ -11,6 +13,9 @@ public class ContaBancaria {
     private double saldo;
     private LocalDateTime horarioAtual = LocalDateTime.now();
     private boolean contaAberta;
+    private ArrayList<String> historicoDeTransacoes = new ArrayList<>();
+
+
 
     public ContaBancaria(String nome, String cpf, String identificadorConta, String banco) {
         this.nome = nome;
@@ -77,6 +82,7 @@ public class ContaBancaria {
         if(contaAberta) {
             if(valor <= this.saldo) {
                 this.saldo -= valor;
+                registrarTransacao("Saque de RS$ " + valor);
             } else {
                 System.out.println("Saldo insufiente para saque!");
             }
@@ -88,6 +94,7 @@ public class ContaBancaria {
     public void deposito(double valor) {
         if(contaAberta) {
             this.saldo += valor;
+            registrarTransacao("Deposito de RS$ " + valor);
         } else {
             throw new IllegalStateException("Você não pode mais usar os recursos da conta, pois ela foi fechada");
         }
@@ -99,6 +106,7 @@ public class ContaBancaria {
             if(valor <= this.saldo) {
                 destino.saldo += valor;
                 this.saldo -= valor;
+                registrarTransacao("Tranferência pix no valor de RS$ " + valor + "para " + destino);
             } else {
                 System.out.println("Erro! Talvez você não tenha saldo suficiente!");
             }
@@ -113,6 +121,7 @@ public class ContaBancaria {
             if(valor <= this.saldo && this.horarioAtual.getHour() >= 8 && this.horarioAtual.getHour() <= 19) {
                 destino.saldo += valor;
                 this.saldo -= valor;
+                registrarTransacao("Tranferência no valor de RS$ " + valor + "para " + destino);
             } else {
                 System.out.println("Erro! Você está fora do horário comercial, ou seu saldo é insuficiente para tranferir.");
             }
@@ -147,7 +156,7 @@ public class ContaBancaria {
         }
     }
 
-    public ArrayList<String> verificarInformacoes() {
+    public void verificarInformacoes() {
         if(contaAberta) {
             ArrayList<String> dados = new ArrayList<>();
             dados.add(this.nome);
@@ -157,7 +166,7 @@ public class ContaBancaria {
             dados.add(this.endereco);
             dados.add(Double.toString(this.saldo));
             dados.add(getHorarioAtual());
-            return dados;
+            System.out.println(dados);
         } else {
             throw new IllegalStateException("Você não pode mais usar os recursos da conta, pois ela foi fechada");
         }
@@ -171,5 +180,22 @@ public class ContaBancaria {
         this.banco = "";
         this.endereco = "";
         this.saldo = 0.0;
+    }
+
+    public void registrarTransacao(String transacao) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dataHora = String.valueOf(LocalDateTime.now());
+        historicoDeTransacoes.add(dataHora + " -- " + transacao);
+    }
+
+    public void exibirHistoricoTransacoes() {
+        if(historicoDeTransacoes.isEmpty()) {
+            System.out.println("Não há transações registradas.");
+        } else {
+            System.out.println("Histórico de Transações:");
+            for(String transacao : historicoDeTransacoes) {
+                System.out.println(transacao);
+            }
+        }
     }
 }
