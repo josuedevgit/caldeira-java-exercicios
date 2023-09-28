@@ -2,7 +2,6 @@ package exercicio01;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContaBancaria {
     private String nome;
@@ -14,7 +13,7 @@ public class ContaBancaria {
     private LocalDateTime horarioAtual = LocalDateTime.now();
     private boolean contaAberta;
     private ArrayList<String> historicoDeTransacoes = new ArrayList<>();
-
+    private double taxaManutencaoMensal;
 
 
     public ContaBancaria(String nome, String cpf, String identificadorConta, String banco) {
@@ -196,6 +195,32 @@ public class ContaBancaria {
             for(String transacao : historicoDeTransacoes) {
                 System.out.println(transacao);
             }
+        }
+    }
+
+    public void deduzirTaxaManutencaoMensal() {
+        if (contaAberta && LocalDateTime.now().getDayOfMonth() == 1) {
+            if (saldo >= taxaManutencaoMensal) {
+                saldo -= taxaManutencaoMensal;
+                registrarTransacao("Taxa de manutenção mensal deduzida: R$" + taxaManutencaoMensal);
+                System.out.println("Taxa de manutenção mensal deduzida: R$" + taxaManutencaoMensal);
+            } else {
+                saldo = 0.0;
+                contaAberta = false;
+                registrarTransacao("Conta encerrada devido à falta de saldo para a taxa de manutenção mensal.");
+                System.out.println("Conta encerrada devido à falta de saldo para a taxa de manutenção mensal.");
+            }
+        }
+    }
+
+    public void calcularJuros(double taxa) {
+        if (contaAberta) {
+            double juros = saldo * taxa / 100;
+            saldo += juros;
+            registrarTransacao("Juros calculados: R$" + juros);
+            System.out.println("Juros calculados e adicionados ao saldo.");
+        } else {
+            System.out.println("Erro: A conta está encerrada e não é possível calcular juros.");
         }
     }
 }
