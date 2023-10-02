@@ -27,7 +27,7 @@ public class Principal {
         for(int i = 0; i < listaFormas.length; i++) {
             double area = listaFormas[i].cacularArea();
             String areaFormatada = String.format("%.2f", area);
-            
+
             System.out.print(nomesFormas[i]);
             System.out.println(areaFormatada);
         }
