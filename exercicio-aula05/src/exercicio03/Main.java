@@ -3,7 +3,7 @@ package exercicio03;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Exercicio03 {
+public class Main {
     /*
     * Crie um programa Java que permita ao usuário criar uma lista de tarefas. O programa deve permitir adicionar tarefas
     * à lista, remover tarefas e exibir todas as tarefas na lista. Use um ArrayList para armazenar as tarefas.

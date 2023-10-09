@@ -3,7 +3,7 @@ package exercicio04;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Exercicio04 {
+public class Main {
     /*
     * Crie um programa Java que simule uma lista de compras. O programa deve permitir
     * que o usuário adicione itens à lista, remova itens da lista e exiba a
