@@ -14,38 +14,44 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        LinkedList<Print> printQueue = new LinkedList<>();
+        LinkedList<Printing> printQueue = new LinkedList<>();
+        String yesOrNo = "s";
 
-        System.out.println("IMPRIMIR:");
-        System.out.println("1. Adicionar a fila de impressão");
-        System.out.println("2. Imprimir documentos na fila");
+        while(yesOrNo.equals("s")) {
+            System.out.println("IMPRIMIR:");
+            System.out.println("1. Adicionar a fila de impressão");
+            System.out.println("2. Imprimir documentos na fila");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        switch(choice) {
-            case 1:
-                System.out.println("O que você está imprindo:");
-                String name = scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.println("O que você está imprindo:");
+                    String name = scanner.nextLine();
 
-                System.out.println("Qual o número de páginas?");
-                int pageNumber = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.println("Qual o número de páginas?");
+                    int pageNumber = scanner.nextInt();
+                    scanner.nextLine();
 
-                Print print = new Print(name, pageNumber);
-                printQueue.add(print);
-                System.out.println("Adicionado a fila de Impressão!");
-                break;
-            case 2:
-                for (Print printElement : printQueue
-                     ) {
-                    System.out.println("Imprindo: " + printElement);
-                }
+                    Printing print = new Printing(name, pageNumber);
+                    printQueue.add(print);
+                    System.out.println("Adicionado a fila de Impressão!");
+                    break;
+                case 2:
+                    for (Printing printElement : printQueue
+                    ) {
+                        printElement.print();
+                    }
 
-                System.out.println("Documentos impressos!");
-                break;
-            default:
-                System.out.println("Dado Inválido, tente novamente!");
+                    System.out.println("Documentos impressos!");
+                    break;
+                default:
+                    System.out.println("Dado Inválido, tente novamente!");
+            }
+            System.out.println("Digite 's' para continuar e imprimir");
+            System.out.println("Ou 'n' para sair do programa");
+            yesOrNo = scanner.nextLine();
         }
     }
 }
