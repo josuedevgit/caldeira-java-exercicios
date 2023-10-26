@@ -15,21 +15,28 @@ public class Exercicio02 {
         int nameValue = nameAndAges.get("Jim");
         System.out.println("A idade de Jim é: " + nameValue);
 
-        printAgedPeople("Jim", nameAndAges);
+        printAgedPeople("mico", nameAndAges);
     }
 
     public static void printAgedPeople(String key, Map<String, Integer> nameAndAges) {
-        int keyValue = nameAndAges.get(key);
+        int keyValue = 0;
+        if(nameAndAges.containsKey(key)) {
+            keyValue = nameAndAges.get(key);
 
-        if(keyValue >= 60) {
-            System.out.println(nameAndAges.get(key));
+            String keyName = null;
+            for (Map.Entry<String, Integer> mapIndex : nameAndAges.entrySet()) {
+                if (key.equals(mapIndex.getKey()) && keyValue >= 60) {
+                    keyName = mapIndex.getKey();
+                }
+            }
+
+            if(!keyName.isEmpty()) {
+                System.out.println(key + " tem " + keyValue + " anos.");
+            }
+        } else {
+            System.out.println("--------------------");
+            System.out.println("Nome não encontrado!");
         }
-
-//        for (Map.Entry<String, Integer> be : nameAndAges.entrySet()) {
-//            if (key.equals(be.getKey())) {
-//
-//            }
-//        }
 
     }
 }
