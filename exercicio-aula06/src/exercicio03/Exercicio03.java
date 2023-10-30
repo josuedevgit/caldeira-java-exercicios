@@ -20,7 +20,9 @@ public class Exercicio03 {
             address = scanner.nextLine();
             System.out.print("Digite a região: ");
             cityLocal = scanner.nextLine();
-
+            System.out.println();
+            System.out.println("------------------------------");
+            System.out.println();
             phoneList.put(name, new Calendar(number, address, cityLocal));
 
             System.out.print("Digite o nome (ou deixe em branco para encerrar): ");
@@ -33,7 +35,8 @@ public class Exercicio03 {
         Collections.sort(sortedKeys);
 
         // Imprimir os contatos em ordem alfabética
-        System.out.println("Lista de contatos em ordem alfabética:");
+        System.out.println("Lista de contatos em ordem alfabética: ");
+        System.out.println("------------------------------");
         for (String contatoNome : sortedKeys) {
             Calendar contato = phoneList.get(contatoNome);
             System.out.println("Nome: " + contatoNome);
@@ -41,6 +44,25 @@ public class Exercicio03 {
             System.out.println("Endereço: " + contato.getAddress());
             System.out.println("Região: " + contato.getCityLocal());
             System.out.println();
+        }
+        System.out.println("------------------------------");
+
+        System.out.println();
+        System.out.print("Digite a região para imprimir contatos: ");
+        String region = scanner.nextLine();
+        printContactsByRegion(phoneList, "sul");
+    }
+
+    public static void printContactsByRegion(Map<String, Calendar> phoneList, String region) {
+        for (Map.Entry<String, Calendar> contact : phoneList.entrySet()) {
+            if (contact.getValue().getCityLocal().equals(region)) {
+                System.out.println("Região: " + contact.getValue().getCityLocal());
+                System.out.println("Nome: " + contact.getKey());
+                System.out.println("Número: " + contact.getValue().getNumber());
+                System.out.println("Endereço: " + contact.getValue().getAddress());
+                System.out.println("------------------------------");
+                System.out.println();
+            }
         }
     }
 }

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="497211ba-c3d7-4c0f-b026-bfdc55a365b3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/exercicio04/Exercicio04.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exercicio03/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exercicio03/Calendar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/exercicio03/Exercicio03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exercicio03/Exercicio03.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +28,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2XFn9kPNWqbbnkw5Ss51WVZC4mZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
