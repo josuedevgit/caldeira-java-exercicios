@@ -3,31 +3,25 @@ package exercicio03;
 import java.util.*;
 
 public class Calendar {
-    private Map<String, String> phoneList = new TreeMap<>();
+    private String number;
     private String address;
     private String cityLocal;
 
-    public Calendar(Map<String, String> phoneList, String address, String cityLocal) {
-        this.phoneList = phoneList;
+    public Calendar(String number, String address, String cityLocal) {
+        this.number = number;
         this.address = address;
         this.cityLocal = cityLocal;
     }
 
-    public void getPhoneList() {
-        // extrai as chaves que sao nomes
-        Set<String> names = phoneList.keySet();
+    public String getNumber() {
+        return number;
+    }
 
-        // orderna os nomes em ordem alfabetica
-        List<String> ordernedNames = new ArrayList<>(names);
-        Collections.sort(ordernedNames);
+    public String getAddress() {
+        return address;
+    }
 
-//        for (Map.Entry<String, String> contact : phoneList.entrySet()) {
-//            String name = contact.getKey();
-//            String phoneNumber = contact.getValue();
-//
-//            System.out.println("Lista de contatos:");
-//            System.out.println(name + ": " + phoneNumber);
-//            System.out.println("----------------------");
-//        }
+    public String getCityLocal() {
+        return cityLocal;
     }
 }

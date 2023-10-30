@@ -1,41 +1,46 @@
 package exercicio03;
 
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Exercicio03 {
 
     public static void main(String[] args) {
-        Map<String, String> phoneList = new TreeMap<>();
         Scanner scanner = new Scanner(System.in);
+        Map<String, Calendar> phoneList = new TreeMap<>();
+        String name, number, address, cityLocal;
 
-        // fazer um programa "rotativo"
-//        while(true) {
-//            switch () {
-//
-//            }
-//        }
+        System.out.println("Adicione números à lista telefônica!");
+        System.out.print("Digite o nome (ou deixe em branco para encerrar): ");
+        name = scanner.nextLine();
 
-        System.out.println("LISTA TELEFONICA");
+        while (!name.isEmpty()) {
+            System.out.print("Digite o número de telefone: ");
+            number = scanner.nextLine();
+            System.out.print("Digite o endereço: ");
+            address = scanner.nextLine();
+            System.out.print("Digite a região: ");
+            cityLocal = scanner.nextLine();
 
-        System.out.print("Digite seu nome: ");
-        String name = scanner.nextLine();
-        System.out.println();
+            phoneList.put(name, new Calendar(number, address, cityLocal));
 
-        System.out.print("Digite seu número de celular: ");
-        String phoneNumber = scanner.nextLine();
+            System.out.print("Digite o nome (ou deixe em branco para encerrar): ");
+            name = scanner.nextLine();
+        }
 
-        phoneList.put(name, phoneNumber);
-        System.out.println("--------------------");
 
-        System.out.print("Digite seu endereço: ");
-        String address = scanner.nextLine();
-        System.out.println();
 
-        System.out.print("Digite sua região: ");
-        String localCity = scanner.nextLine();
+        List<String> sortedKeys = new ArrayList<>(phoneList.keySet());
+        Collections.sort(sortedKeys);
 
-        Calendar calendar = new Calendar(phoneList, address, localCity);
+        // Imprimir os contatos em ordem alfabética
+        System.out.println("Lista de contatos em ordem alfabética:");
+        for (String contatoNome : sortedKeys) {
+            Calendar contato = phoneList.get(contatoNome);
+            System.out.println("Nome: " + contatoNome);
+            System.out.println("Número de Telefone: " + contato.getNumber());
+            System.out.println("Endereço: " + contato.getAddress());
+            System.out.println("Região: " + contato.getCityLocal());
+            System.out.println();
+        }
     }
 }
